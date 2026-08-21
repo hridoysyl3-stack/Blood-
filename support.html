@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support & FAQ | MIST Blood Connect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .faq-answer { display: none; }
+        .faq-answer.open { display: block; }
+        .rotate-180 { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
+
+    <nav class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
+            <a href="index.html" class="flex items-center gap-2 cursor-pointer"><i class="fas fa-droplet text-2xl"></i><h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1></a>
+            <div class="flex items-center gap-4 text-sm md:text-base flex-wrap justify-center">
+                <a href="index.html" class="hover:text-red-200 font-semibold transition">Home</a>
+                <a href="support.html" class="hover:text-red-200 font-semibold transition border-b-2 border-white pb-1">Help center</a>
+                <a href="about.html" class="hover:text-red-200 font-semibold transition">About us</a>
+                <a href="profile.html" class="hover:text-red-200 font-semibold transition">My Profile</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white border-b relative overflow-hidden py-16">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
+            <p class="text-red-600 font-black tracking-widest uppercase text-sm mb-3">Support & FAQ</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Help Center & Frequently Asked Questions</h2>
+            <div class="w-full max-w-3xl h-[3px] bg-red-500 mb-6"></div>
+            <p class="text-xl text-gray-700 max-w-3xl font-medium italic">Got a question or facing an issue? We're here to help.</p>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-5 space-y-6">
+            <div class="bg-gradient-to-br from-red-600 to-red-800 rounded-2xl p-6 text-white shadow-lg relative">
+                <h3 class="font-bold text-red-100 uppercase text-xs">Emergency Hotline</h3>
+                <p class="text-4xl font-black mb-1 tracking-wider mt-2">01989823605</p>
+                <p class="text-xs text-red-200 mt-2 font-medium bg-black/20 p-2 rounded">Please call only for extreme life-threatening medical emergencies.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-4">Report an Issue</h3>
+                <form onsubmit="event.preventDefault(); alert('Message Sent!');" class="space-y-4">
+                    <input type="text" placeholder="Your Name / MIST ID" class="w-full border p-2.5 rounded-lg bg-gray-50 text-sm" required>
+                    <textarea rows="4" placeholder="Message..." class="w-full border p-2.5 rounded-lg bg-gray-50 text-sm" required></textarea>
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7">
+            <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h3>
+                <div class="space-y-3">
+                    <div class="border border-gray-200 rounded-xl overflow-hidden"><button onclick="toggleFAQ('faq1', 'icon1')" class="w-full text-left p-4 font-bold text-gray-800 bg-gray-50 flex justify-between"><span>Who can join MIST Blood Connect?</span><i id="icon1" class="fas fa-chevron-down text-red-500"></i></button><div id="faq1" class="faq-answer px-4 pb-4 pt-2 text-sm text-gray-600">Exclusively for current students, faculty, staff, and alumni of MIST.</div></div>
+                    <div class="border border-gray-200 rounded-xl overflow-hidden"><button onclick="toggleFAQ('faq2', 'icon2')" class="w-full text-left p-4 font-bold text-gray-800 bg-gray-50 flex justify-between"><span>Is my phone number visible?</span><i id="icon2" class="fas fa-chevron-down text-red-500"></i></button><div id="faq2" class="faq-answer px-4 pb-4 pt-2 text-sm text-gray-600">No! Phone numbers are hidden by default.</div></div>
+                    <div class="border border-gray-200 rounded-xl overflow-hidden"><button onclick="toggleFAQ('faq3', 'icon3')" class="w-full text-left p-4 font-bold text-gray-800 bg-gray-50 flex justify-between"><span>How does the Exam Mode work?</span><i id="icon3" class="fas fa-chevron-down text-red-500"></i></button><div id="faq3" class="faq-answer px-4 pb-4 pt-2 text-sm text-gray-600">Turn it on to temporarily hide yourself from the search list during exams.</div></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white py-10 border-t-4 border-red-600 mt-auto"><div class="max-w-4xl mx-auto px-4 text-center"><p>&copy; 2026 MIST Blood Connect.</p></div></footer>
+
+    <script>
+        function toggleFAQ(answerId, iconId) {
+            const answer = document.getElementById(answerId);
+            const icon = document.getElementById(iconId);
+            if (answer.classList.contains('open')) { answer.classList.remove('open'); icon.classList.remove('rotate-180'); } 
+            else { document.querySelectorAll('.faq-answer').forEach(el => el.classList.remove('open')); document.querySelectorAll('.fa-chevron-down').forEach(el => el.classList.remove('rotate-180')); answer.classList.add('open'); icon.classList.add('rotate-180'); }
+        }
+    </script>
+</body>
+</html>
