@@ -36,12 +36,16 @@
                 <h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1>
             </div>
             
-            <div class="flex items-center gap-4 text-sm md:text-base flex-wrap justify-center">
-                <button onclick="toggleModal('fundModal')" class="flex items-center gap-1 text-yellow-300 hover:text-yellow-100 font-bold transition">
-                    <i class="fas fa-hand-holding-heart"></i> Support Us
+            <div class="flex items-center gap-5 text-sm md:text-base flex-wrap justify-center font-semibold">
+                <a href="#" class="hover:text-red-200 transition">Home</a>
+                <a href="#" class="hover:text-red-200 transition">Help center</a>
+                <a href="#" class="hover:text-red-200 transition">About us</a>
+                <a href="#" class="hover:text-red-200 transition">My Profile</a>
+                <span class="text-white opacity-70">|</span>
+                <button onclick="toggleModal('fundModal')" class="flex items-center gap-1 text-yellow-400 hover:text-yellow-200 font-bold transition">
+                    <i class="fas fa-hand-holding-heart"></i> Fund
                 </button>
-                <span class="text-gray-300">|</span>
-                <button onclick="toggleModal('registerModal')" class="hover:text-red-200 font-semibold transition">Register</button>
+                <button onclick="toggleModal('registerModal')" class="hover:text-red-200 transition font-bold">Register</button>
                 <button onclick="toggleModal('postModal')" class="bg-white text-red-700 px-4 py-2 rounded-md font-bold shadow hover:bg-gray-100 transition">
                     <i class="fas fa-bullhorn mr-1"></i> Request Blood
                 </button>
@@ -170,7 +174,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="blessing-card bg-pink-50 p-5 rounded-lg shadow-sm border border-pink-100">
                         <i class="fas fa-quote-left text-pink-300 text-2xl mb-2"></i>
-                        <p class="text-gray-700 text-sm font-medium italic">"আমার মায়ের সিজারের সময় রক্তের খুব প্রয়োজন ছিল। MIST-এর এক ভাই এসে রক্ত দিয়ে জীবন বাঁচিয়েছেন। আল্লাহ আপনার মঙ্গল করুক।"</p>
+                        <p class="text-gray-700 text-sm font-medium italic">"আমার মায়ের সিজারের সময় রক্তের খুব প্রয়োজন ছিল। MIST-এর এক ভাই এসে রক্ত দিয়ে জীবন বাঁচিয়েছেন। আল্লাহ আপনার মঙ্গল করুক।"</p>
                         <p class="text-right text-xs text-pink-600 font-bold mt-3">- Anonymous Blessing</p>
                     </div>
                     <div class="blessing-card bg-yellow-50 p-5 rounded-lg shadow-sm border border-yellow-100">
@@ -222,7 +226,7 @@
         </div>
     </main>
 
-    <!-- Health & Blood Donation Tips (Added back) -->
+    <!-- Health & Blood Donation Tips -->
     <section class="bg-white border-t py-12">
         <div class="max-w-7xl mx-auto px-4">
             <h3 class="text-2xl font-bold text-center text-gray-800 mb-8"><i class="fas fa-heartbeat text-red-500 mr-2"></i> Health & Blood Donation Tips</h3>
@@ -360,7 +364,7 @@
                 <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg mt-2">
                     <label class="flex items-center gap-2 cursor-pointer">
                         <input type="checkbox" id="reqTransportProvider" class="w-4 h-4 text-blue-600">
-                        <span class="text-sm font-bold text-blue-900"><i class="fas fa-car mr-1"></i> আমি ডোনারকে ট্রান্সপোর্ট সাপোর্ট (যাতায়াত ভাড়া/রাইড) দেবো।</span>
+                        <span class="text-sm font-bold text-blue-900"><i class="fas fa-car mr-1"></i> আমি ডোনারকে ট্রান্সপোর্ট সাপোর্ট (যাতায়াত ভাড়া/রাইড) দেবো।</span>
                     </label>
                 </div>
 
@@ -514,8 +518,8 @@
                             </div>
                         </div>
                         <div class="bg-gray-50 px-5 py-3 border-t flex justify-end">
-                            <button onclick="showToast('Request sent to poster.')" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-2">
-                                <i class="fas fa-hand-holding-medical"></i> I Want to Donate
+                            <button onclick="window.location.href='request.html'" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-2">
+                                <i class="fas fa-hand-holding-medical"></i> View & Donate
                             </button>
                         </div>
                     </div>
