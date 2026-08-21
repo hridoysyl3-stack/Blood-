@@ -3,154 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MIST Blood Connect | Home</title>
+    <title>MIST Blood Connect | Saving Lives</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
         .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; }
         .blessing-card { background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png'); }
+        
+        /* Ticker Animation (Slowed Down) */
         .ticker-wrap { width: 100%; overflow: hidden; white-space: nowrap; }
         .ticker { display: inline-block; padding-left: 100%; animation: ticker 40s linear infinite; }
-        @keyframes ticker { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
 
+    <!-- Top Sponsorship Banner -->
     <div class="bg-indigo-900 text-white text-center py-1.5 text-xs font-bold tracking-wide">
         <i class="fas fa-bolt text-yellow-400 mr-1"></i> This month's Blood Drive is proudly powered by <span class="text-yellow-300">Atomize Classroom</span>
     </div>
-    
+
+    <!-- Navigation Bar -->
     <nav class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
-            <a href="index.html" class="flex items-center gap-2 cursor-pointer">
-                <i class="fas fa-droplet text-2xl"></i><h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1>
-            </a>
+            <div class="flex items-center gap-2">
+                <i class="fas fa-droplet text-2xl"></i>
+                <h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1>
+            </div>
+            
             <div class="flex items-center gap-4 text-sm md:text-base flex-wrap justify-center">
-                <a href="index.html" class="hover:text-red-200 font-semibold transition">Home</a>
-                <a href="support.html" class="hover:text-red-200 font-semibold transition">Help center</a>
-                <a href="about.html" class="hover:text-red-200 font-semibold transition">About us</a>
-                <a href="profile.html" class="hover:text-red-200 font-semibold transition">My Profile</a>
-                <span class="text-red-400 hidden lg:inline">|</span>
-                <button onclick="toggleModal('fundModal')" class="text-yellow-300 hover:text-yellow-100 font-bold transition hidden lg:block"><i class="fas fa-hand-holding-heart"></i> Fund</button>
-                <button onclick="toggleModal('registerModal')" class="hover:text-red-200 font-semibold transition hidden lg:block">Register</button>
-                <button onclick="toggleModal('postModal')" class="bg-white text-red-700 px-3 py-1.5 rounded-md font-bold shadow hover:bg-gray-100 transition hidden lg:block"><i class="fas fa-bullhorn"></i> Request Blood</button>
+                <button onclick="toggleModal('fundModal')" class="flex items-center gap-1 text-yellow-300 hover:text-yellow-100 font-bold transition">
+                    <i class="fas fa-hand-holding-heart"></i> Support Us
+                </button>
+                <span class="text-gray-300">|</span>
+                <button onclick="toggleModal('registerModal')" class="hover:text-red-200 font-semibold transition">Register</button>
+                <button onclick="toggleModal('postModal')" class="bg-white text-red-700 px-4 py-2 rounded-md font-bold shadow hover:bg-gray-100 transition">
+                    <i class="fas fa-bullhorn mr-1"></i> Request Blood
+                </button>
             </div>
         </div>
     </nav>
 
+    <!-- Emotional Ticker Line -->
     <div class="ticker-wrap bg-red-50 border-b border-red-100 py-2 text-red-800 text-sm font-semibold">
         <div class="ticker">
             <span class="mx-8"><i class="fas fa-heart text-red-500 mr-1"></i> An NSE student just donated for a CE student's mother!</span>
             <span class="mx-8"><i class="fas fa-heart text-red-500 mr-1"></i> Akib donated A+ blood today in memory of his grandfather.</span>
+            <span class="mx-8"><i class="fas fa-heart text-red-500 mr-1"></i> A CE student stepped up for a midnight emergency at DMCH. We salute the unity!</span>
         </div>
     </div>
 
+    <!-- Hero Section -->
     <header class="bg-white border-b relative overflow-hidden pb-8">
-        <div class="max-w-7xl mx-auto px-4 pt-12 flex flex-col items-center text-center">
-            <p class="text-red-600 font-black tracking-widest uppercase text-sm mb-3">Welcome to</p>
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">MIST Blood Connect</h2>
-            <div class="w-full max-w-3xl h-[3px] bg-red-500 mb-6"></div>
-            <p class="text-xl text-gray-700 max-w-3xl font-medium italic">Donate blood, save a life. A single drop can give someone a second chance.</p>
-        </div>
-        
-        <div id="heroScroll" class="flex overflow-x-auto gap-6 pb-6 hide-scroll max-w-6xl mx-auto px-4 items-stretch mt-8">
-            <div class="shrink-0 w-80 bg-gradient-to-br from-red-50 to-white border border-red-100 p-5 rounded-2xl relative shadow-sm text-left transform transition hover:scale-105">
-                <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase"><i class="fas fa-star text-yellow-300"></i> Today's Hero</div>
-                <div class="flex items-center gap-4 mt-2"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" class="w-14 h-14 rounded-full border-2 border-red-500 object-cover"><div><h3 class="font-bold text-gray-900">Akib Ahmed <span class="text-gray-500 text-xs font-normal">(NSE-10)</span></h3></div></div>
-                <p class="text-gray-700 text-sm mt-3 font-medium italic">"Akib saves Rakib's mother by donating blood today at CMH. We salute you!"</p>
-            </div>
-            <div class="shrink-0 w-80 bg-gradient-to-br from-green-50 to-white border border-green-100 p-5 rounded-2xl relative shadow-sm text-left transform transition hover:scale-105">
-                <div class="absolute top-0 right-0 bg-green-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase"><i class="fas fa-seedling text-green-200"></i> First Time Donor</div>
-                <div class="flex items-center gap-4 mt-2"><div class="w-14 h-14 bg-green-200 text-green-700 rounded-full flex items-center justify-center text-xl font-black border-2 border-green-400">A</div><div><h3 class="font-bold text-gray-900">Antor Das <span class="text-gray-500 text-xs font-normal">(CSE-22)</span></h3></div></div>
-                <p class="text-gray-700 text-sm mt-3 font-medium italic">"Welcome to our community! Antor ajk 1st time Blood dise. A true inspiration."</p>
-            </div>
-            <div class="shrink-0 w-80 bg-gradient-to-br from-purple-50 to-white border border-purple-100 p-5 rounded-2xl relative shadow-sm text-center transform transition hover:scale-105">
-                <div class="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Aug 2026</div>
-                <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-2xl mx-auto mb-2"><i class="fas fa-trophy"></i></div>
-                <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wide">Dept of the Month</h3><p class="text-purple-800 font-black text-lg mt-1">Nuclear Science & Eng.</p>
-            </div>
-        </div>
-
-        <div class="max-w-4xl mx-auto mt-4 px-4 w-full">
-            <div class="bg-gray-800 p-3 rounded-t-lg text-white font-bold text-left flex items-center gap-2"><i class="fas fa-search text-red-400"></i> Find a Donor Instantly</div>
-            <div class="bg-white p-4 rounded-b-lg shadow-lg border border-gray-200">
-                <div class="flex flex-col md:flex-row gap-2">
-                    <select id="searchGroup" class="flex-1 p-3 rounded border focus:outline-red-500 text-lg font-semibold bg-gray-50"><option value="">Select Blood Group...</option><option value="A+">A+</option><option value="B+">B+</option><option value="O+">O+</option><option value="AB-">AB-</option></select>
-                    <button onclick="searchDonors()" class="bg-red-600 text-white px-8 py-3 rounded hover:bg-red-700 transition font-bold text-lg">Search</button>
+        <div class="max-w-7xl mx-auto px-4 pt-8 text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
+                Donate Blood, Save a <span class="text-red-600">Life</span>
+            </h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+                A single drop of your blood can give someone a second chance at life.
+            </p>
+            
+            <!-- Horizontal Scrollable Cards Container -->
+            <div id="heroScroll" class="flex overflow-x-auto gap-6 pb-6 hide-scroll max-w-6xl mx-auto px-4 items-stretch cursor-pointer">
+                
+                <!-- Today's Hero -->
+                <div class="shrink-0 w-80 bg-gradient-to-br from-red-50 to-white border border-red-100 p-5 rounded-2xl relative shadow-sm text-left flex flex-col justify-center transform transition hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase"><i class="fas fa-star text-yellow-300"></i> Today's Hero</div>
+                    <div class="flex items-center gap-4 mt-2">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="Hero" class="w-14 h-14 rounded-full border-2 border-red-500 object-cover">
+                        <div>
+                            <h3 class="font-bold text-gray-900">Akib Ahmed <span class="text-gray-500 text-xs font-normal">(NSE-10)</span></h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mt-3 font-medium italic">"Akib saves Rakib's mother by donating blood today at CMH. We salute you!"</p>
                 </div>
-                <div id="searchResults" class="hidden mt-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                    <h4 class="font-bold text-gray-800 mb-3 flex justify-between items-center border-b pb-2"><span id="searchResultTitle">Available Donors</span><button onclick="closeSearch('searchResults')" class="text-gray-400 hover:text-red-500"><i class="fas fa-times"></i></button></h4>
-                    <ul class="space-y-2 max-h-60 overflow-y-auto hide-scroll" id="donorList"></ul>
+
+                <!-- New Hero (1st Time) -->
+                <div class="shrink-0 w-80 bg-gradient-to-br from-green-50 to-white border border-green-100 p-5 rounded-2xl relative shadow-sm text-left flex flex-col justify-center transform transition hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-green-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase"><i class="fas fa-seedling text-green-200"></i> First Time Donor</div>
+                    <div class="flex items-center gap-4 mt-2">
+                        <div class="w-14 h-14 bg-green-200 text-green-700 rounded-full flex items-center justify-center text-xl font-black border-2 border-green-400">A</div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Antor Das <span class="text-gray-500 text-xs font-normal">(CSE-22)</span></h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mt-3 font-medium italic">"Welcome to our community! Antor ajk 1st time Blood dise. A true inspiration."</p>
+                </div>
+
+                <!-- Birthday Wish -->
+                <div class="shrink-0 w-80 bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-5 rounded-2xl relative shadow-sm text-left flex flex-col justify-center transform transition hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase"><i class="fas fa-birthday-cake text-pink-300"></i> Birthday Wish</div>
+                    <div class="flex items-center gap-4 mt-2">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="Birthday" class="w-14 h-14 rounded-full border-2 border-blue-500 object-cover">
+                        <div>
+                            <h3 class="font-bold text-gray-900">Amlan <span class="text-gray-500 text-xs font-normal">(ME-19)</span></h3>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 text-sm mt-3 font-medium italic">"Happy Birthday to our Blood Hero Amlan! Wishing you endless joy and blessings."</p>
+                </div>
+                
+                <!-- Department of the Month -->
+                <div class="shrink-0 w-80 bg-gradient-to-br from-purple-50 to-white border border-purple-100 p-5 rounded-2xl relative shadow-sm flex flex-col justify-center items-center transform transition hover:scale-105">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg uppercase">Aug 2026</div>
+                    <div class="w-14 h-14 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center text-2xl mb-2"><i class="fas fa-trophy"></i></div>
+                    <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wide">Dept of the Month</h3>
+                    <p class="text-purple-800 font-black text-lg text-center mt-1">Nuclear Science & Eng.</p>
+                </div>
+
+            </div>
+
+            <!-- Elevated Search Donors Section -->
+            <div class="max-w-4xl mx-auto mt-4 px-4">
+                <div class="bg-gray-800 p-3 rounded-t-lg text-white font-bold text-left flex items-center gap-2">
+                    <i class="fas fa-search text-red-400"></i> Find a Donor Instantly
+                </div>
+                <div class="bg-white p-4 rounded-b-lg shadow-lg border border-gray-200">
+                    <div class="flex flex-col md:flex-row gap-2">
+                        <select id="searchGroup" class="flex-1 p-3 rounded border focus:outline-red-500 text-lg font-semibold bg-gray-50">
+                            <option value="">Select Blood Group...</option>
+                            <option value="A+">A+ (A Positive)</option><option value="B+">B+ (B Positive)</option>
+                            <option value="O+">O+ (O Positive)</option><option value="AB+">AB+ (AB Positive)</option>
+                            <option value="A-">A- (A Negative)</option><option value="B-">B- (B Negative)</option>
+                            <option value="O-">O- (O Negative)</option><option value="AB-">AB- (AB Negative)</option>
+                        </select>
+                        <button onclick="searchDonors()" class="bg-red-600 text-white px-8 py-3 rounded hover:bg-red-700 transition font-bold text-lg">Search</button>
+                    </div>
+
+                    <!-- Search Results -->
+                    <div id="searchResults" class="hidden mt-4 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                        <h4 class="font-bold text-gray-800 mb-3 flex justify-between items-center border-b pb-2">
+                            <span id="searchResultTitle">Available Donors</span>
+                            <button onclick="closeSearch('searchResults')" class="text-gray-400 hover:text-red-500"><i class="fas fa-times"></i></button>
+                        </h4>
+                        <ul class="space-y-2 max-h-60 overflow-y-auto hide-scroll" id="donorList"></ul>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow w-full">
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8 flex-grow">
+        
+        <!-- Left Column: Feed & Wall of Gratitude -->
         <div class="lg:col-span-2 space-y-10">
+            
+            <!-- Live Requests -->
             <div>
-                <div class="flex justify-between items-center mb-6 border-b pb-2"><h3 class="text-2xl font-bold text-gray-800 border-l-4 border-red-600 pl-3">Live Blood Requests</h3><span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded animate-pulse">Live</span></div>
-                <div id="feedContainer" class="space-y-5"></div>
+                <div class="flex justify-between items-center mb-6 border-b pb-2">
+                    <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-red-600 pl-3">Live Blood Requests</h3>
+                    <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded animate-pulse"><i class="fas fa-circle text-[8px] mr-1"></i> Live</span>
+                </div>
+                <div id="feedContainer" class="space-y-5">
+                    <!-- Cards injected via JS -->
+                </div>
             </div>
+
+            <!-- Wall of Gratitude -->
             <div>
                 <h3 class="text-2xl font-bold text-gray-800 border-l-4 border-pink-500 pl-3 mb-6">Wall of Gratitude</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="blessing-card bg-pink-50 p-5 rounded-lg shadow-sm border border-pink-100"><i class="fas fa-quote-left text-pink-300 text-2xl mb-2"></i><p class="text-gray-700 text-sm font-medium italic">"আমার মায়ের সিজারের সময় রক্তের খুব প্রয়োজন ছিল। MIST-এর এক ভাই এসে রক্ত দিয়ে জীবন বাঁচিয়েছেন।"</p><p class="text-right text-xs text-pink-600 font-bold mt-3">- Anonymous Blessing</p></div>
+                    <div class="blessing-card bg-pink-50 p-5 rounded-lg shadow-sm border border-pink-100">
+                        <i class="fas fa-quote-left text-pink-300 text-2xl mb-2"></i>
+                        <p class="text-gray-700 text-sm font-medium italic">"আমার মায়ের সিজারের সময় রক্তের খুব প্রয়োজন ছিল। MIST-এর এক ভাই এসে রক্ত দিয়ে জীবন বাঁচিয়েছেন। আল্লাহ আপনার মঙ্গল করুক।"</p>
+                        <p class="text-right text-xs text-pink-600 font-bold mt-3">- Anonymous Blessing</p>
+                    </div>
+                    <div class="blessing-card bg-yellow-50 p-5 rounded-lg shadow-sm border border-yellow-100">
+                        <i class="fas fa-quote-left text-yellow-300 text-2xl mb-2"></i>
+                        <p class="text-gray-700 text-sm font-medium italic">"I was so panicked when my father needed O- blood. The Rare Heroes club saved us. I will never forget this help."</p>
+                        <p class="text-right text-xs text-yellow-600 font-bold mt-3">- Patient's Daughter</p>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- Right Column: Clubs, Alerts -->
         <div class="space-y-6">
+            
+            <!-- Dengue Platelet Hub Alert -->
             <div class="bg-orange-100 border border-orange-300 p-5 rounded-xl shadow-sm relative overflow-hidden">
                 <div class="absolute -right-4 -top-4 opacity-10 text-orange-500 text-7xl"><i class="fas fa-mosquito"></i></div>
-                <h4 class="font-bold text-orange-900 mb-1"><i class="fas fa-exclamation-triangle mr-1"></i> Dengue Alert Mode</h4><p class="text-xs text-orange-800 font-semibold mb-3">High demand for Platelets in Dhaka!</p><button onclick="toggleModal('plateletModal')" class="w-full bg-orange-600 text-white text-sm font-bold py-2 rounded hover:bg-orange-700 shadow-md">Join Apheresis Team</button>
+                <h4 class="font-bold text-orange-900 mb-1"><i class="fas fa-exclamation-triangle mr-1"></i> Dengue Alert Mode</h4>
+                <p class="text-xs text-orange-800 font-semibold mb-3">High demand for Platelets in Dhaka!</p>
+                <button onclick="toggleModal('plateletModal')" class="w-full bg-orange-600 text-white text-sm font-bold py-2 rounded hover:bg-orange-700 shadow-md">Join Apheresis (Platelet) Team</button>
             </div>
-            <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl shadow-sm"><h4 class="font-bold text-emerald-900 mb-2"><i class="fas fa-motorcycle text-emerald-600 mr-2"></i> MISTian Ride Support</h4><p class="text-xs text-emerald-700 mb-3">Need to reach the hospital fast?</p><button onclick="toggleModal('rideRequestModal')" class="w-full bg-emerald-600 text-white text-sm font-bold py-2 rounded hover:bg-emerald-700">Request a Lift</button></div>
-            <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100 shadow-sm"><h4 class="font-bold text-indigo-900 mb-2 flex items-center gap-2"><i class="fas fa-hospital"></i> Dhaka Hospital Directory</h4><div class="flex gap-2 mb-3"><input type="text" id="hospitalSearchInputHome" placeholder="e.g. CMH, DMCH..." class="flex-1 p-2 text-sm border rounded outline-none"><button onclick="searchHospital('Home')" class="bg-indigo-600 text-white px-3 py-2 rounded font-bold text-sm">Find</button></div><div id="hospitalResultHome" class="hidden bg-white p-3 rounded border text-sm"></div></div>
+
+            <!-- Rare Blood Club -->
+            <div class="bg-gray-900 text-white p-5 rounded-xl shadow-sm border border-gray-700">
+                <h4 class="font-bold text-gray-100 mb-2"><i class="fas fa-gem text-blue-400 mr-2"></i> The Rare Heroes Society</h4>
+                <p class="text-xs text-gray-400 mb-3">O-, A-, B-, AB- donors are our ultimate backup line. Data kept secure for emergencies.</p>
+                <div class="flex gap-2">
+                    <span class="bg-gray-800 border border-gray-600 px-2 py-1 rounded text-xs font-bold">O-</span>
+                    <span class="bg-gray-800 border border-gray-600 px-2 py-1 rounded text-xs font-bold">AB-</span>
+                </div>
+            </div>
+
+            <!-- Emergency Bike/Ride Support -->
+            <div class="bg-emerald-50 border border-emerald-200 p-5 rounded-xl shadow-sm">
+                <h4 class="font-bold text-emerald-900 mb-2"><i class="fas fa-motorcycle text-emerald-600 mr-2"></i> MISTian Ride Support</h4>
+                <p class="text-xs text-emerald-700 mb-3">Need to reach the hospital fast? Request a lift from our biker community.</p>
+                <button onclick="toggleModal('rideRequestModal')" class="w-full bg-emerald-600 text-white text-sm font-bold py-2 rounded hover:bg-emerald-700">Request a Lift to Hospital</button>
+            </div>
+
+            <!-- Dhaka Hospital Directory -->
+            <div class="bg-indigo-50 p-5 rounded-xl border border-indigo-100 shadow-sm">
+                <h4 class="font-bold text-indigo-900 mb-2 flex items-center gap-2"><i class="fas fa-hospital"></i> Dhaka Hospital Directory</h4>
+                <div class="flex gap-2 mb-3">
+                    <input type="text" id="hospitalSearchInput" placeholder="e.g. CMH, Square..." class="flex-1 p-2 text-sm border rounded outline-none focus:border-indigo-500">
+                    <button onclick="searchHospital()" class="bg-indigo-600 text-white px-3 py-2 rounded font-bold text-sm hover:bg-indigo-700">Find</button>
+                </div>
+                <div id="hospitalResult" class="hidden bg-white p-3 rounded border text-sm"></div>
+            </div>
         </div>
     </main>
 
-    <section class="bg-white border-t py-12 mt-auto">
+    <!-- Health & Blood Donation Tips (Added back) -->
+    <section class="bg-white border-t py-12">
         <div class="max-w-7xl mx-auto px-4">
             <h3 class="text-2xl font-bold text-center text-gray-800 mb-8"><i class="fas fa-heartbeat text-red-500 mr-2"></i> Health & Blood Donation Tips</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition"><h4 class="font-bold text-gray-800 mb-2">Before Donation</h4><p class="text-sm text-gray-600">Drink plenty of water. Eat a healthy, iron-rich meal. Ensure you had a good night's sleep.</p></div>
-                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition"><h4 class="font-bold text-gray-800 mb-2">After Donation</h4><p class="text-sm text-gray-600">Rest for 10-15 mins. Drink extra liquids for the next 24 hours.</p></div>
-                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition"><h4 class="font-bold text-gray-800 mb-2">Eligibility</h4><p class="text-sm text-gray-600">Must weigh at least 50 kg, be free from fever, wait 120 days since last donation.</p></div>
+                <!-- Tip 1 -->
+                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3"><i class="fas fa-tint"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">Before Donation</h4>
+                    <p class="text-sm text-gray-600">Drink plenty of water. Eat a healthy, iron-rich meal (avoid fatty foods) before donating. Ensure you had a good night's sleep.</p>
+                </div>
+                <!-- Tip 2 -->
+                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3"><i class="fas fa-cookie-bite"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">After Donation</h4>
+                    <p class="text-sm text-gray-600">Rest for 10-15 mins. Drink extra liquids for the next 24 hours. Avoid heavy physical exercise or lifting heavy weights for the rest of the day.</p>
+                </div>
+                <!-- Tip 3 -->
+                <div class="p-5 bg-gray-50 rounded-lg border hover:shadow-md transition">
+                    <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-3"><i class="fas fa-calendar-check"></i></div>
+                    <h4 class="font-bold text-gray-800 mb-2">Eligibility</h4>
+                    <p class="text-sm text-gray-600">You must weigh at least 50 kg, be free from cold/fever, and it must be at least 4 months (120 days) since your last donation.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-gray-900 text-white py-10 border-t-4 border-red-600"><div class="max-w-4xl mx-auto px-4 text-center"><h3 class="text-2xl font-bold mb-3">Join Our Community</h3><p class="text-gray-400 text-sm mb-6">Stay connected with MIST Blood Connect.</p><p class="text-gray-600 text-xs mt-8">&copy; 2026 MIST Blood Connect.</p></div></footer>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 mt-auto border-t-4 border-red-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-3">Join Our Community</h3>
+            <p class="text-gray-400 text-sm mb-6 max-w-lg mx-auto">Stay connected with MIST Blood Connect. Follow our page for updates.</p>
+            <a href="https://www.facebook.com/atomizeclassroom" target="_blank" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-bold transition shadow-lg">
+                <i class="fab fa-facebook text-xl"></i> Atomize Classroom
+            </a>
+            <p class="text-gray-600 text-xs mt-8">&copy; 2026 MIST Blood Connect.</p>
+        </div>
+    </footer>
 
-    <!-- SHARED MODALS (Fund, Platelet, Ride, Post, Register) -->
-    <!-- (Include the same modals here as provided in previous code, avoiding copy-paste bloat for this response limit) -->
-    <div id="toast" class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 z-[200]"><i class="fas fa-check-circle text-green-400"></i><span id="toastMsg" class="font-medium">Success!</span></div>
+    <!-- ================= MODALS ================= -->
 
+    <!-- Join Platelet Team Modal -->
+    <div id="plateletModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-xl w-full max-w-md shadow-2xl p-6 relative">
+            <button onclick="toggleModal('plateletModal')" class="absolute top-4 right-4 text-gray-400 hover:text-orange-500"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-xl font-bold text-orange-600 mb-2"><i class="fas fa-mosquito mr-1"></i> Join Platelet Hub</h3>
+            <p class="text-xs text-gray-600 mb-4 border-b pb-2">Platelet (Apheresis) donation can be done every 15-30 days. Register to be an emergency dengue hero.</p>
+            
+            <form onsubmit="event.preventDefault(); toggleModal('plateletModal'); showToast('Welcome to the Platelet Hub!');" class="space-y-4">
+                <div><label class="block text-xs font-bold mb-1">Full Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <div><label class="block text-xs font-bold mb-1">MIST ID *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <div><label class="block text-xs font-bold mb-1">WhatsApp Number *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <div><label class="block text-xs font-bold mb-1">Last Platelet Donation Date (if any)</label><input type="date" class="w-full border p-2 rounded bg-gray-50"></div>
+                <label class="flex items-center gap-2 mt-2 cursor-pointer">
+                    <input type="checkbox" required class="w-4 h-4 text-orange-600">
+                    <span class="text-xs font-bold text-gray-700">I am physically fit and willing to donate via Apheresis machine.</span>
+                </label>
+                <button type="submit" class="w-full bg-orange-600 text-white py-2 rounded-lg font-bold hover:bg-orange-700 transition shadow-md">Register as Platelet Donor</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ride Request Modal -->
+    <div id="rideRequestModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-xl w-full max-w-md shadow-2xl p-6 relative">
+            <button onclick="toggleModal('rideRequestModal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-xl font-bold text-emerald-800 mb-2"><i class="fas fa-motorcycle mr-1"></i> Request a Ride</h3>
+            <p class="text-xs text-gray-500 mb-4 border-b pb-2">Fill this out so our biker community can help you reach the hospital quickly.</p>
+            <form onsubmit="event.preventDefault(); toggleModal('rideRequestModal'); showToast('Ride request broadcasted to MIST bikers!');" class="space-y-4">
+                <div><label class="block text-xs font-bold mb-1">From (Pickup Location) *</label><input type="text" placeholder="e.g. Mirpur 12" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <div><label class="block text-xs font-bold mb-1">To (Hospital) *</label><input type="text" placeholder="e.g. CMH, Dhaka" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <div><label class="block text-xs font-bold mb-1">When? (Time) *</label><input type="time" class="w-full border p-2 rounded bg-gray-50" required></div>
+                <button type="submit" class="w-full bg-emerald-600 text-white py-2 rounded-lg font-bold hover:bg-emerald-700 transition">Broadcast Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Fund Modal -->
+    <div id="fundModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-xl w-full max-w-md shadow-2xl p-6 relative text-center">
+            <button onclick="toggleModal('fundModal')" class="absolute top-4 right-4 text-gray-400 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
+            <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fas fa-hand-holding-heart"></i></div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Support Our Community</h2>
+            
+            <!-- Updated Support Text -->
+            <p class="text-gray-600 text-sm mb-4">100% non-profit. Donations are used for website maintenance, small appreciation gifts for regular donors and our <strong>Zero-Cost Transport Fund</strong>.</p>
+            
+            <div class="bg-gray-50 border p-4 rounded-lg mb-6">
+                <p class="text-xs text-gray-500 uppercase font-bold mb-2">Send Money (Personal)</p>
+                <div class="flex justify-center items-center gap-3">
+                    <img src="https://download.logo.wine/logo/BKash/BKash-Icon-Logo.wine.png" alt="bKash" class="h-8">
+                    <img src="https://download.logo.wine/logo/Nagad/Nagad-Logo.wine.png" alt="Nagad" class="h-8 object-contain">
+                </div>
+                <p class="text-2xl font-black text-gray-900 mt-2">01410-042025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Post Request Modal -->
+    <div id="postModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-xl w-full max-w-2xl shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="bg-red-50 px-6 py-4 border-b flex justify-between items-center">
+                <h2 class="text-xl font-bold text-red-800"><i class="fas fa-pen-square mr-2"></i> Create Blood Request</h2>
+                <button onclick="toggleModal('postModal')" class="text-gray-500 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <form onsubmit="handlePostSubmit(event)" class="p-6 space-y-4 overflow-y-auto hide-scroll flex-grow">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">Blood Group *</label>
+                        <select id="reqBlood" class="w-full border p-2 rounded bg-gray-50" required>
+                            <option value="">Select...</option><option value="A+">A+</option><option value="B+">B+</option><option value="O+">O+</option><option value="AB+">AB+</option><option value="A-">A-</option><option value="B-">B-</option><option value="O-">O-</option><option value="AB-">AB-</option>
+                        </select>
+                    </div>
+                    <div><label class="block text-sm font-semibold mb-1">Bags Needed *</label><input type="number" id="reqBags" class="w-full border p-2 rounded bg-gray-50" required></div>
+                    <div><label class="block text-sm font-semibold mb-1">Date Needed *</label><input type="date" id="reqDate" class="w-full border p-2 rounded bg-gray-50" required></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">Situation (Urgency) *</label>
+                        <select id="reqUrgency" class="w-full border p-2 rounded bg-gray-50" required>
+                            <option value="Urgent (Today)">Urgent (Today)</option>
+                            <option value="Needed in 1/2 days">Needed in 1/2 days</option>
+                            <option value="Planned Surgery">Planned Surgery</option>
+                        </select>
+                    </div>
+                    <div><label class="block text-sm font-semibold mb-1">Relation to Patient *</label><input type="text" id="reqRelation" placeholder="e.g. Mother, Friend" class="w-full border p-2 rounded bg-gray-50" required></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-semibold mb-1">Problem / Illness *</label><input type="text" id="reqProblem" placeholder="e.g. Dengue, Surgery" class="w-full border p-2 rounded bg-gray-50" required></div>
+                    <div><label class="block text-sm font-semibold mb-1">Hospital Location *</label><input type="text" id="reqHospital" placeholder="e.g. CMH, Dhaka" class="w-full border p-2 rounded bg-gray-50" required></div>
+                </div>
+
+                <!-- Transport Support Provided by Requester -->
+                <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg mt-2">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" id="reqTransportProvider" class="w-4 h-4 text-blue-600">
+                        <span class="text-sm font-bold text-blue-900"><i class="fas fa-car mr-1"></i> আমি ডোনারকে ট্রান্সপোর্ট সাপোর্ট (যাতায়াত ভাড়া/রাইড) দেবো।</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition">Post Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Registration Modal (Fully Required & Updated Header from Screenshot) -->
+    <div id="registerModal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[100] p-4">
+        <div class="bg-white rounded-xl w-full max-w-4xl shadow-2xl flex flex-col max-h-[90vh]">
+            <div class="bg-gray-800 px-6 py-4 border-b flex justify-between items-center text-white">
+                <h2 class="text-xl font-bold"><i class="fas fa-user-plus mr-2"></i> MIST Member Registration</h2>
+                <button onclick="toggleModal('registerModal')" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            
+            <form onsubmit="event.preventDefault(); toggleModal('registerModal'); showToast('Registration complete!');" class="p-6 overflow-y-auto hide-scroll space-y-6 flex-grow">
+                
+                <!-- Toggles for New Features (Based on Screenshot) -->
+                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100 flex flex-col md:flex-row gap-4 mb-4 justify-between">
+                    <label class="flex-1 flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                        <span class="text-sm font-bold text-gray-800">Willing to donate Platelets (Apheresis)?</span>
+                    </label>
+                    <label class="flex-1 flex items-center gap-3 cursor-pointer">
+                        <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
+                        <span class="text-sm font-bold text-gray-800">Have a bike? Ready to give lifts?</span>
+                    </label>
+                </div>
+
+                <!-- Personal Details -->
+                <div>
+                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">1. Personal Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">Full Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">WhatsApp *</label><input type="text" placeholder="+880..." class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Your Photo (Optional)</label><input type="file" class="w-full border p-1.5 rounded bg-gray-50" accept="image/*"></div>
+                    </div>
+                </div>
+
+                <!-- Academic Info -->
+                <div>
+                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">2. MIST Academic Info</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">MIST ID *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Department *</label>
+                            <select class="w-full border p-2 rounded bg-gray-50" required>
+                                <option value="">Select Dept...</option><option>NSE</option><option>CSE</option><option>CE</option><option>ME</option><option>EECE</option><option>AE</option><option>NAME</option>
+                            </select>
+                        </div>
+                        <div><label class="block text-xs font-semibold mb-1">ID Card Photo *</label><input type="file" class="w-full border p-1.5 rounded bg-gray-50" accept="image/*" required></div>
+                    </div>
+                </div>
+
+                <!-- Guardian & Location -->
+                <div>
+                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">3. Guardian & Location</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">Guardian Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Guardian Number *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Present Address *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Permanent Location *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                    </div>
+                </div>
+
+                <!-- Reference -->
+                <div>
+                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">4. Friend's Reference</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">Friend's Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Friend's MIST ID *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Friend's Number *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-900 transition">Submit Full Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="hidden fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 z-[200]">
+        <i class="fas fa-check-circle text-green-400"></i>
+        <span id="toastMsg" class="font-medium">Success!</span>
+    </div>
+
+    <!-- Application Logic -->
     <script>
-        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
-        function closeSearch(id) { document.getElementById(id).classList.add('hidden'); }
-        function showToast(msg) { const t = document.getElementById('toast'); document.getElementById('toastMsg').innerText = msg; t.classList.remove('hidden'); setTimeout(() => t.classList.add('hidden'), 3500); }
+        // Hero Cards Slow Auto-Scroll functionality
+        const scrollContainer = document.getElementById('heroScroll');
+        let scrollInterval;
+        function startAutoScroll() {
+            scrollInterval = setInterval(() => {
+                if(scrollContainer) {
+                    scrollContainer.scrollLeft += 1; 
+                    if(scrollContainer.scrollLeft >= (scrollContainer.scrollWidth - scrollContainer.clientWidth - 1)) {
+                        scrollContainer.scrollLeft = 0;
+                    }
+                }
+            }, 30); 
+        }
+        function stopAutoScroll() { clearInterval(scrollInterval); }
 
-        let posts = [{ id: 105, blood: 'O+', bags: 2, date: '2026-08-20', urgency: 'Needed in 1/2 days', problem: 'Bypass Surgery', hospital: 'CMH, Dhaka', relation: 'Father', transportProvided: true }];
+        if(scrollContainer) {
+            startAutoScroll();
+            scrollContainer.addEventListener('mouseenter', stopAutoScroll);
+            scrollContainer.addEventListener('mouseleave', startAutoScroll);
+            scrollContainer.addEventListener('touchstart', stopAutoScroll);
+            scrollContainer.addEventListener('touchend', startAutoScroll);
+        }
+
+        let posts = [
+            { id: 1, blood: 'O+', bags: 2, date: '2026-08-20', urgency: 'Needed in 1/2 days', problem: 'Bypass Surgery', hospital: 'CMH, Dhaka', relation: 'Father', time: '1 hour ago', transportProvided: true },
+            { id: 2, blood: 'AB-', bags: 1, date: '2026-08-18', urgency: 'Urgent (Today)', problem: 'Road Accident', hospital: 'Evercare Hospital', relation: 'Relative', time: '3 hours ago', transportProvided: false }
+        ];
+
+        const hospitals = [
+            { name: "CMH (Combined Military Hospital)", address: "Dhaka Cantonment", landmark: "Inside Cantonment, entry via Jahangir Gate." },
+            { name: "DMCH (Dhaka Medical College)", address: "Secretariat Road", landmark: "Beside Central Shaheed Minar." },
+            { name: "Square Hospitals", address: "Panthapath", landmark: "Near Bashundhara City." }
+        ];
+
+        const dummyDonors = {
+            'A+': ['Akib Ahmed_NSE_10'], 'B+': ['Tanvir Hasan_ME_19'], 'O+': ['Mahmudul Hasan_CE_22'], 
+            'AB+': [], 'A-': [], 'B-': [], 'O-': [], 'AB-': []
+        };
+
         function renderPosts() {
             const container = document.getElementById('feedContainer');
-            if(!container) return;
             container.innerHTML = '';
             posts.forEach(post => {
+                const urgencyColor = post.urgency.includes('Urgent') ? 'text-red-600 bg-red-100' : 'text-orange-600 bg-orange-100';
+                const transportBadge = post.transportProvided ? `<p class="text-xs text-blue-600 font-bold mb-2 bg-blue-50 inline-block px-2 py-1 rounded"><i class="fas fa-car mr-1"></i> Transport cost will be provided by requester</p>` : '';
+
                 container.innerHTML += `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden relative mt-4">
-                        <div class="absolute top-0 right-0 text-red-600 bg-red-100 text-xs font-bold px-3 py-1 rounded-bl-lg">${post.urgency}</div>
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition relative mt-4">
+                        <div class="absolute top-0 right-0 ${urgencyColor} text-xs font-bold px-3 py-1 rounded-bl-lg">${post.urgency}</div>
                         <div class="p-5 flex flex-col md:flex-row gap-5 mt-4">
-                            <div class="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 w-24 h-24 rounded-xl border border-gray-200"><span class="text-3xl font-black text-red-600">${post.blood}</span></div>
-                            <div class="flex-grow"><h4 class="text-lg font-bold text-gray-800 mb-1"><i class="fas fa-hospital-alt text-red-500"></i> ${post.hospital}</h4><p class="text-sm font-bold text-gray-700">Problem: <span class="text-red-600">${post.problem}</span></p></div>
+                            <div class="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 w-24 h-24 rounded-xl border border-gray-200 shadow-sm">
+                                <span class="text-3xl font-black text-red-600">${post.blood}</span>
+                                <span class="text-xs font-bold text-gray-500 mt-1">${post.bags} Bag(s)</span>
+                            </div>
+                            <div class="flex-grow">
+                                ${transportBadge}
+                                <h4 class="text-lg font-bold text-gray-800 mb-1 flex items-center gap-2"><i class="fas fa-hospital-alt text-red-500"></i>${post.hospital}</h4>
+                                <p class="text-sm font-bold text-gray-700 mb-3 border-b pb-2">Problem: <span class="font-normal text-red-600">${post.problem}</span></p>
+                                <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
+                                    <p><i class="far fa-calendar-alt w-5 text-gray-400"></i> Date: <span class="font-semibold text-gray-800">${post.date}</span></p>
+                                    <p><i class="fas fa-user-injured w-5 text-gray-400"></i> For: <span class="font-semibold text-gray-800">${post.relation}</span></p>
+                                </div>
+                            </div>
                         </div>
                         <div class="bg-gray-50 px-5 py-3 border-t flex justify-end">
-                            <button onclick="window.location.href='request.html'" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700"><i class="fas fa-hand-holding-medical"></i> View & Donate</button>
+                            <button onclick="showToast('Request sent to poster.')" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-2">
+                                <i class="fas fa-hand-holding-medical"></i> I Want to Donate
+                            </button>
                         </div>
-                    </div>`;
+                    </div>
+                `;
             });
         }
+
+        function handlePostSubmit(e) {
+            e.preventDefault();
+            posts.unshift({
+                id: Date.now(),
+                blood: document.getElementById('reqBlood').value,
+                bags: document.getElementById('reqBags').value,
+                date: document.getElementById('reqDate').value,
+                urgency: document.getElementById('reqUrgency').value,
+                problem: document.getElementById('reqProblem').value,
+                hospital: document.getElementById('reqHospital').value,
+                relation: document.getElementById('reqRelation').value,
+                transportProvided: document.getElementById('reqTransportProvider').checked,
+                time: 'Just now'
+            });
+            toggleModal('postModal');
+            e.target.reset();
+            renderPosts();
+            showToast("Blood request posted successfully.");
+        }
+
+        // Searches
+        function searchDonors() {
+            const group = document.getElementById('searchGroup').value;
+            if(!group) return showToast("Select a blood group first.");
+            document.getElementById('searchResults').classList.remove('hidden');
+            document.getElementById('searchResultTitle').innerHTML = `Available <span class="text-red-600 font-black ml-1">${group}</span> Donors`;
+            const list = document.getElementById('donorList');
+            list.innerHTML = '';
+            const donorsList = dummyDonors[group] || [];
+            if(donorsList.length === 0) {
+                list.innerHTML = `<li class="text-gray-500 text-sm text-center py-4">No eligible donors found.</li>`;
+            } else {
+                donorsList.forEach(donorString => {
+                    const [name, dept, batch] = donorString.split('_');
+                    list.innerHTML += `<li class="flex justify-between items-center bg-gray-50 p-3 rounded-lg border hover:border-red-200 transition">
+                        <div><p class="font-bold text-gray-800">${name}</p><div class="flex gap-2 text-xs font-semibold mt-1"><span class="bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Dept: ${dept}</span></div></div>
+                        <button onclick="showToast('Notification sent to ${name}.')" class="text-sm bg-red-100 text-red-600 px-3 py-1.5 rounded font-bold hover:bg-red-200">Notify</button>
+                    </li>`;
+                });
+            }
+        }
+
+        function searchHospital() {
+            const query = document.getElementById('hospitalSearchInput').value.toLowerCase();
+            const resultDiv = document.getElementById('hospitalResult');
+            if(!query) return resultDiv.classList.add('hidden');
+            const match = hospitals.find(h => h.name.toLowerCase().includes(query) || h.address.toLowerCase().includes(query));
+            resultDiv.classList.remove('hidden');
+            if(match) {
+                resultDiv.innerHTML = `<h5 class="font-bold text-gray-800 border-b pb-1 mb-2">${match.name}</h5><p class="text-gray-600 mb-1"><strong>Address:</strong> ${match.address}</p><p class="text-gray-600"><strong>Landmark:</strong> ${match.landmark}</p>`;
+            } else {
+                resultDiv.innerHTML = `<p class="text-gray-500 text-center py-2">No matching hospital found.</p>`;
+            }
+        }
+
+        // Utils
+        function closeSearch(id) { document.getElementById(id).classList.add('hidden'); }
+        function toggleModal(id) { document.getElementById(id).classList.toggle('hidden'); }
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            t.classList.remove('hidden');
+            setTimeout(() => t.classList.add('hidden'), 3500);
+        }
+
         renderPosts();
     </script>
 </body>
