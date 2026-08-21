@@ -6,82 +6,173 @@
     <title>About Us | MIST Blood Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>.zigzag-row:nth-child(even) { flex-direction: row-reverse; }</style>
+    <style>
+        .zigzag-row:nth-child(even) { flex-direction: row-reverse; }
+    </style>
 </head>
 <body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
 
+    <!-- Navigation Bar -->
     <nav class="bg-red-700 text-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
-            <a href="index.html" class="flex items-center gap-2 cursor-pointer"><i class="fas fa-droplet text-2xl"></i><h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1></a>
-            <div class="flex items-center gap-4 text-sm md:text-base flex-wrap justify-center">
-                <a href="index.html" class="hover:text-red-200 font-semibold transition">Home</a>
-                <a href="support.html" class="hover:text-red-200 font-semibold transition">Help center</a>
-                <a href="about.html" class="hover:text-red-200 font-semibold transition border-b-2 border-white pb-1">About us</a>
-                <a href="profile.html" class="hover:text-red-200 font-semibold transition">My Profile</a>
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-droplet text-2xl"></i>
+                <h1 class="text-xl font-bold tracking-wide">MIST Blood Connect</h1>
+            </div>
+            <div class="flex items-center gap-4 text-sm md:text-base">
+                <a href="index.html" class="hover:text-red-200 font-semibold transition"><i class="fas fa-home mr-1"></i> Home</a>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <header class="bg-white border-b relative overflow-hidden py-16">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center">
-            <p class="text-red-600 font-black tracking-widest uppercase text-sm mb-3">About Us</p>
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">The Story Behind MIST Blood Connect</h2>
-            <div class="w-full max-w-3xl h-[3px] bg-red-500 mb-6"></div>
-            <p class="text-xl text-gray-700 max-w-3xl font-medium italic">"Our ultimate goal is simple: No MISTian or their family should ever feel helpless due to a lack of blood."</p>
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-red-500 to-red-800"></div>
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-red-600 font-black tracking-widest uppercase text-sm mb-2">About Us</p>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">
+                The Story Behind MIST Blood Connect
+            </h2>
+            <p class="text-xl text-gray-700 max-w-3xl mx-auto font-medium italic border-l-4 border-red-500 pl-4 text-left md:text-center md:border-l-0 md:border-t-4 md:pt-4 md:inline-block">
+                "Our ultimate goal is simple: No MISTian or their family should ever feel helpless due to a lack of blood."
+            </p>
         </div>
     </header>
 
-    <div class="max-w-6xl mx-auto px-4 py-16 space-y-20">
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-16 flex-grow w-full space-y-20">
+
+        <!-- 1. The Spark: A Familiar Panic -->
         <div class="flex flex-col md:flex-row items-center gap-10 zigzag-row">
-            <div class="w-full md:w-1/2 flex justify-center"><div class="w-56 h-56 bg-red-50 rounded-full flex items-center justify-center border-4 border-red-100 shadow-lg relative"><div class="absolute top-4 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-md">Urgent Need!</div><i class="fas fa-mobile-alt text-7xl text-red-500"></i></div></div>
-            <div class="w-full md:w-1/2 text-center md:text-left"><h3 class="text-3xl font-bold text-gray-900 mb-4">The Spark: A Familiar Panic</h3><p class="text-gray-600 leading-relaxed text-lg">We have all experienced a common scenario: a sudden, frantic message for emergency blood popping up in our departmental or club group chats. In those critical moments, finding the right person at the right time becomes an overwhelming struggle.</p></div>
-        </div>
-        
-        <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 md:p-12 shadow-md mt-20">
-            <div class="text-center mb-10"><h3 class="text-3xl font-black text-indigo-900 mb-4">Our Solution: A Verified Ecosystem</h3><p class="text-indigo-800 font-medium text-lg max-w-3xl mx-auto">We are not just another database; we are a verified ecosystem built <strong>by MISTians, for MISTians.</strong></p></div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white p-8 rounded-2xl shadow-sm text-center"><h4 class="font-bold text-gray-900 text-xl mb-3">Exclusive Access</h4><p class="text-sm text-gray-600">Both donors and requesters must be verified MIST students.</p></div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm text-center"><h4 class="font-bold text-gray-900 text-xl mb-3">Strict Verification</h4><p class="text-sm text-gray-600">Multi-step verification process ensures 100% genuine medical emergencies.</p></div>
-                <div class="bg-white p-8 rounded-2xl shadow-sm text-center"><h4 class="font-bold text-gray-900 text-xl mb-3">Zero Spam</h4><p class="text-sm text-gray-600">By eliminating fake requests, we guarantee a safe environment.</p></div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="w-56 h-56 bg-red-50 rounded-full flex items-center justify-center border-4 border-red-100 shadow-lg relative">
+                    <div class="absolute top-4 right-0 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse shadow-md">Urgent Need!</div>
+                    <i class="fas fa-mobile-alt text-7xl text-red-500"></i>
+                    <i class="fas fa-comment-dots absolute bottom-8 left-6 text-3xl text-gray-700 bg-white rounded-full p-2 shadow-md"></i>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">The Spark: A Familiar Panic</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    We have all experienced a common scenario: a sudden, frantic message for emergency blood popping up in our departmental or club group chats. In those critical moments, finding the right person at the right time becomes an overwhelming struggle. Especially in a busy city like Dhaka, for those who don’t have a large circle of relatives nearby, the pressure of managing blood in a life-or-death situation is agonizing.
+                </p>
             </div>
         </div>
 
+        <!-- 2. The Limits of Spreadsheets -->
+        <div class="flex flex-col md:flex-row items-center gap-10 zigzag-row">
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="w-56 h-56 bg-green-50 rounded-full flex items-center justify-center border-4 border-green-100 shadow-lg relative">
+                    <i class="fas fa-file-excel text-7xl text-green-600"></i>
+                    <i class="fas fa-search absolute bottom-6 right-8 text-3xl text-gray-700 bg-white rounded-full p-3 shadow-md"></i>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">The Limits of Spreadsheets</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Many of our campus clubs and groups maintain donor databases using standard Excel sheets. However, during an absolute emergency, manually filtering through rows of outdated data to find who is actually available and eligible to donate is a stressful and time-consuming nightmare.
+                </p>
+            </div>
+        </div>
+
+        <!-- 3. The Trust Barrier -->
+        <div class="flex flex-col md:flex-row items-center gap-10 zigzag-row">
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="w-56 h-56 bg-orange-50 rounded-full flex items-center justify-center border-4 border-orange-100 shadow-lg">
+                    <i class="fas fa-user-shield text-7xl text-orange-500"></i>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 text-center md:text-left">
+                <h3 class="text-3xl font-bold text-gray-900 mb-4">The Trust Barrier</h3>
+                <p class="text-gray-600 leading-relaxed text-lg">
+                    Many students genuinely want to donate blood and save lives. But recently, the rise of fake requests, scams, and security issues has made people hesitant. The constant fear of "Is this request real?" holds many willing donors back, leaving real patients in danger.
+                </p>
+            </div>
+        </div>
+
+        <!-- 4. Our Solution: A Verified Ecosystem -->
+        <div class="bg-indigo-50 border border-indigo-100 rounded-3xl p-8 md:p-12 shadow-md">
+            <div class="text-center mb-10">
+                <h3 class="text-3xl font-black text-indigo-900 mb-4">Our Solution: A Verified Ecosystem</h3>
+                <p class="text-indigo-800 font-medium text-lg max-w-3xl mx-auto">
+                    MIST Blood Connect was built as a permanent, secure solution to these exact problems. We are not just another database; we are a verified ecosystem built <strong>by MISTians, for MISTians.</strong>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-indigo-50 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5"><i class="fas fa-id-card"></i></div>
+                    <h4 class="font-bold text-gray-900 text-xl mb-3">Exclusive Access</h4>
+                    <p class="text-sm text-gray-600">You cannot simply log in and post a request. Both donors and requesters must be verified MIST students, faculty, or staff.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-indigo-50 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5"><i class="fas fa-clipboard-check"></i></div>
+                    <h4 class="font-bold text-gray-900 text-xl mb-3">Strict Verification</h4>
+                    <p class="text-sm text-gray-600">From registration to posting a request, our multi-step verification process ensures that only 100% genuine medical emergencies reach our donors.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-indigo-50 text-center hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-5"><i class="fas fa-shield-virus"></i></div>
+                    <h4 class="font-bold text-gray-900 text-xl mb-3">Zero Spam, Max Security</h4>
+                    <p class="text-sm text-gray-600">By eliminating fake requests, we guarantee our donors a safe and transparent environment to do their noble work.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. The Team Behind the Screen -->
         <div class="text-center mt-20">
             <h3 class="text-3xl font-black text-gray-900 mb-4">The Team Behind the Screen</h3>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mt-12">
-                <div class="flex flex-col items-center group"><div class="w-40 h-40 rounded-full border-4 border-red-500 p-1 mb-4 shadow-md"><img src="https://ui-avatars.com/api/?name=Akib+Ahmed&background=fee2e2&color=dc2626&size=200&bold=true" class="rounded-full"></div><h4 class="text-xl font-bold">Akib Ahmed</h4><p class="text-sm font-bold text-red-600">Founder</p></div>
-                <div class="flex flex-col items-center group"><div class="w-40 h-40 rounded-full border-4 border-gray-300 p-1 mb-4 shadow-md"><img src="https://ui-avatars.com/api/?name=Antor+Das&background=f3f4f6&color=4b5563&size=200&bold=true" class="rounded-full"></div><h4 class="text-xl font-bold">Antor Das</h4><p class="text-sm font-bold text-gray-600">Co-Founder</p></div>
-                <div class="flex flex-col items-center group"><div class="w-40 h-40 rounded-full border-4 border-gray-300 p-1 mb-4 shadow-md"><img src="https://ui-avatars.com/api/?name=Amlan+Roy&background=f3f4f6&color=4b5563&size=200&bold=true" class="rounded-full"></div><h4 class="text-xl font-bold">Amlan Roy</h4><p class="text-sm font-bold text-gray-600">Co-Founder</p></div>
+            <p class="text-gray-600 max-w-2xl mx-auto mb-12 text-lg">
+                This initiative was founded to bring this vision to life and build this platform from the ground up, heavily supported by dedicated friends who gave their time and effort to this cause.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                
+                <!-- Founder -->
+                <div class="flex flex-col items-center group">
+                    <div class="w-40 h-40 rounded-full border-4 border-red-500 p-1 mb-4 relative overflow-hidden group-hover:scale-105 transition duration-300 shadow-md">
+                        <img src="https://ui-avatars.com/api/?name=Akib+Ahmed&background=fee2e2&color=dc2626&size=200&bold=true" alt="Akib Ahmed" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900">Akib Ahmed</h4>
+                    <p class="text-sm font-bold text-red-600 mb-1">Founder</p>
+                    <p class="text-xs text-gray-500 font-semibold bg-gray-100 px-3 py-1 rounded-full mt-2">Nuclear Science & Eng. (NE-10)</p>
+                </div>
+
+                <!-- Co-Founder 1 -->
+                <div class="flex flex-col items-center group mt-4 md:mt-0">
+                    <div class="w-40 h-40 rounded-full border-4 border-gray-300 p-1 mb-4 relative overflow-hidden group-hover:scale-105 transition duration-300 shadow-md">
+                        <img src="https://ui-avatars.com/api/?name=Antor+Das&background=f3f4f6&color=4b5563&size=200&bold=true" alt="Antor Das" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900">Antor Das</h4>
+                    <p class="text-sm font-bold text-gray-600 mb-1">Co-Founder</p>
+                    <p class="text-xs text-gray-500 font-semibold bg-gray-100 px-3 py-1 rounded-full mt-2">Friend & Contributor</p>
+                </div>
+
+                <!-- Co-Founder 2 -->
+                <div class="flex flex-col items-center group mt-4 md:mt-0">
+                    <div class="w-40 h-40 rounded-full border-4 border-gray-300 p-1 mb-4 relative overflow-hidden group-hover:scale-105 transition duration-300 shadow-md">
+                        <img src="https://ui-avatars.com/api/?name=Amlan+Roy&background=f3f4f6&color=4b5563&size=200&bold=true" alt="Amlan Roy" class="w-full h-full rounded-full object-cover">
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900">Amlan Roy</h4>
+                    <p class="text-sm font-bold text-gray-600 mb-1">Co-Founder</p>
+                    <p class="text-xs text-gray-500 font-semibold bg-gray-100 px-3 py-1 rounded-full mt-2">Friend & Contributor</p>
+                </div>
+
             </div>
         </div>
 
-        <div class="pt-20 border-t border-gray-200 mt-20">
-            <div class="max-w-7xl mx-auto px-4 flex flex-col items-center text-center mb-12">
-                <p class="text-red-600 font-black tracking-widest uppercase text-sm mb-3">Legal & Security</p>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Privacy Policy & Terms of Service</h2>
-                <div class="w-full max-w-3xl h-[3px] bg-red-500 mb-6"></div>
-                <p class="text-xl text-gray-700 max-w-3xl font-medium italic">Transparent policies for a safe and secure blood donation ecosystem.</p>
-            </div>
+    </main>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <section class="bg-white p-8 rounded-3xl shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-black text-gray-900 border-b pb-4 mb-4">Privacy Policy</h2>
-                    <h4 class="font-bold text-gray-900 mt-4"><i class="fas fa-database text-red-500"></i> Information We Collect</h4>
-                    <p class="text-sm text-gray-600">Personal Data: Full Name, Phone (WhatsApp), Address, Guardian details, MISTian Reference. Academic Data: MIST ID, Dept, Batch, ID card photo. Medical Data: Blood Group.</p>
-                    <h4 class="font-bold text-gray-900 mt-4"><i class="fas fa-eye-slash text-red-500"></i> Data Visibility & Security</h4>
-                    <p class="text-sm text-gray-600">Your phone number is never publicly displayed. Search results only display your Name, Dept, and Batch. All ID photos are encrypted after verification.</p>
-                </section>
-                <section class="bg-white p-8 rounded-3xl shadow-sm border border-gray-200">
-                    <h2 class="text-2xl font-black text-gray-900 border-b pb-4 mb-4">Terms of Service</h2>
-                    <h4 class="font-bold text-gray-900 mt-4"><i class="fas fa-users text-indigo-500"></i> User Responsibilities</h4>
-                    <p class="text-sm text-gray-600">All information provided must be 100% accurate. You will not post fake or non-emergency requests.</p>
-                    <h4 class="font-bold text-gray-900 mt-4"><i class="fas fa-ban text-indigo-500"></i> Zero-Tolerance</h4>
-                    <p class="text-sm text-gray-600">Any user found harassing donors or misbehaving with the patient’s family will face immediate suspension.</p>
-                </section>
-            </div>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 mt-auto border-t-4 border-red-600">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-3">Join Our Community</h3>
+            <p class="text-gray-400 text-sm mb-6 max-w-lg mx-auto">Stay connected with MIST Blood Connect. Follow our page for updates.</p>
+            <p class="text-gray-600 text-xs mt-8">&copy; 2026 MIST Blood Connect.</p>
         </div>
-    </div>
+    </footer>
 
-    <footer class="bg-gray-900 text-white py-10 border-t-4 border-red-600 mt-auto"><div class="max-w-4xl mx-auto px-4 text-center"><p>&copy; 2026 MIST Blood Connect.</p></div></footer>
 </body>
 </html>
