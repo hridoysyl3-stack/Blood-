@@ -306,33 +306,58 @@
         </div>
     </div>
 
-    <!-- Karma Reward Store Modal -->
+<!-- Karma Reward Store Modal -->
     <div id="rewardStoreModal" class="hidden fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[100] p-4">
         <div class="bg-white rounded-2xl w-full max-w-lg shadow-2xl overflow-hidden">
             <div class="bg-purple-900 px-6 py-4 flex justify-between items-center text-white">
                 <h2 class="text-lg font-bold"><i class="fas fa-store mr-2"></i> Karma Reward Store</h2>
                 <button onclick="toggleModal('rewardStoreModal')" class="text-gray-300 hover:text-white"><i class="fas fa-times text-xl"></i></button>
             </div>
-<div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm flex justify-between items-center">
-    <div>
-        <h4 class="font-bold text-gray-800">
-            <i class="fas fa-bolt text-blue-500 mr-2"></i> Electrolyte drink
-        </h4>
-        <p class="text-xs text-gray-500">1 Free Electrolyte Drink Voucher</p>
-    </div>
-    
-    <button onclick="showToast('Voucher Unlocked! Check email.')" class="bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-purple-700">300 pts</button>
-</div>
-    <button onclick="showToast('Voucher Unlocked! Check email.')" class="bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-purple-700">300 pts</button>
-</div>
- <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm flex justify-between items-center">
-                        <div><h4 class="font-bold text-gray-800"><i class="fas fa-tshirt text-indigo-500 mr-1"></i> Hero T-Shirt</h4><p class="text-xs text-gray-500">MIST Blood Connect Official</p></div>
-                        <button class="bg-gray-200 text-gray-500 text-xs font-bold px-3 py-1.5 rounded cursor-not-allowed">1200 pts</button>
-                    </div>
+            <div class="p-6 bg-purple-50">
+                <div class="text-center mb-6">
+                    <p class="text-sm font-bold text-purple-800">Your Balance</p>
+                    <h3 class="text-4xl font-black text-purple-700">750 <span class="text-sm">pts</span></h3>
+                </div>
+                
+                <!-- Items Container (Forced Vertical Stacking) -->
+                <div class="flex flex-col space-y-4 w-full">
+                    
+                    <!-- Item 1: Electrolyte Drink -->
                     <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm flex justify-between items-center">
-                        <div><h4 class="font-bold text-gray-800"><i class="fas fa-palette text-pink-500 mr-1"></i> Crimson Dark Theme</h4><p class="text-xs text-gray-500">Unlock Premium Profile Theme</p></div>
-                        <button onclick="showToast('Crimson Theme Unlocked!')" class="bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded hover:bg-purple-700">500 pts</button>
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-bolt text-blue-500 text-xl w-5 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-base">Electrolyte drink</h4>
+                                <p class="text-xs text-gray-500">1 Free Electrolyte Drink Voucher</p>
+                            </div>
+                        </div>
+                        <button onclick="showToast('Voucher Unlocked! Check email.')" class="bg-purple-600 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-purple-700 whitespace-nowrap shadow-sm">300 pts</button>
                     </div>
+
+                    <!-- Item 2: Hero T-Shirt -->
+                    <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-tshirt text-indigo-500 text-xl w-5 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-base">Hero T-Shirt</h4>
+                                <p class="text-xs text-gray-500">MIST Blood Connect Official</p>
+                            </div>
+                        </div>
+                        <button class="bg-gray-200 text-gray-500 text-sm font-bold px-4 py-2 rounded-lg cursor-not-allowed whitespace-nowrap shadow-sm">1200 pts</button>
+                    </div>
+
+                    <!-- Item 3: Crimson Dark Theme -->
+                    <div class="bg-white p-4 rounded-xl border border-purple-100 shadow-sm flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <i class="fas fa-palette text-pink-500 text-xl w-5 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-base">Crimson Dark Theme</h4>
+                                <p class="text-xs text-gray-500">Unlock Premium Profile Theme</p>
+                            </div>
+                        </div>
+                        <button onclick="showToast('Crimson Theme Unlocked!')" class="bg-purple-600 text-white text-sm font-bold px-4 py-2 rounded-lg hover:bg-purple-700 whitespace-nowrap shadow-sm">500 pts</button>
+                    </div>
+
                 </div>
             </div>
         </div>
