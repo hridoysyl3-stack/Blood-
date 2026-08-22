@@ -381,66 +381,35 @@
                 <button onclick="toggleModal('registerModal')" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
             </div>
             
-            <form onsubmit="event.preventDefault(); toggleModal('registerModal'); showToast('Registration complete!');" class="p-6 overflow-y-auto hide-scroll space-y-6 flex-grow">
+            <form onsubmit="handleRegistration(event)" class="p-6 overflow-y-auto hide-scroll space-y-6 flex-grow">
                 
-                <!-- Toggles for New Features (Based on Screenshot) -->
-                <div class="bg-indigo-50 p-4 rounded-lg border border-indigo-100 flex flex-col md:flex-row gap-4 mb-4 justify-between">
-                    <label class="flex-1 flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
-                        <span class="text-sm font-bold text-gray-800">Willing to donate Platelets (Apheresis)?</span>
-                    </label>
-                    <label class="flex-1 flex items-center gap-3 cursor-pointer">
-                        <input type="checkbox" class="w-4 h-4 rounded text-indigo-600 focus:ring-indigo-500">
-                        <span class="text-sm font-bold text-gray-800">Have a bike? Ready to give lifts?</span>
-                    </label>
-                </div>
-
                 <!-- Personal Details -->
                 <div>
-                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">1. Personal Details</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-semibold mb-1">Full Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">WhatsApp *</label><input type="text" placeholder="+880..." class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Your Photo (Optional)</label><input type="file" class="w-full border p-1.5 rounded bg-gray-50" accept="image/*"></div>
+                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">1. Account Details</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">Full Name *</label><input type="text" id="regName" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">WhatsApp *</label><input type="text" id="regPhone" placeholder="+880..." class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Email Address *</label><input type="email" id="regEmail" placeholder="student@mist.ac.bd" class="w-full border p-2 rounded bg-gray-50" required></div>
+                        <div><label class="block text-xs font-semibold mb-1">Password *</label><input type="password" id="regPassword" placeholder="Minimum 6 characters" minlength="6" class="w-full border p-2 rounded bg-gray-50" required></div>
                     </div>
                 </div>
 
                 <!-- Academic Info -->
                 <div>
                     <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">2. MIST Academic Info</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-semibold mb-1">MIST ID *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div><label class="block text-xs font-semibold mb-1">MIST ID *</label><input type="text" id="regMistId" class="w-full border p-2 rounded bg-gray-50" required></div>
                         <div><label class="block text-xs font-semibold mb-1">Department *</label>
-                            <select class="w-full border p-2 rounded bg-gray-50" required>
+                            <select id="regDept" class="w-full border p-2 rounded bg-gray-50" required>
                                 <option value="">Select Dept...</option><option>NSE</option><option>CSE</option><option>CE</option><option>ME</option><option>EECE</option><option>AE</option><option>NAME</option>
                             </select>
                         </div>
-                        <div><label class="block text-xs font-semibold mb-1">ID Card Photo *</label><input type="file" class="w-full border p-1.5 rounded bg-gray-50" accept="image/*" required></div>
                     </div>
                 </div>
 
-                <!-- Guardian & Location -->
-                <div>
-                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">3. Guardian & Location</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div><label class="block text-xs font-semibold mb-1">Guardian Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Guardian Number *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Present Address *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Permanent Location *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                    </div>
-                </div>
-
-                <!-- Reference -->
-                <div>
-                    <h3 class="text-sm font-bold text-red-600 border-b border-gray-200 pb-1 mb-3">4. Friend's Reference</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div><label class="block text-xs font-semibold mb-1">Friend's Name *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Friend's MIST ID *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                        <div><label class="block text-xs font-semibold mb-1">Friend's Number *</label><input type="text" class="w-full border p-2 rounded bg-gray-50" required></div>
-                    </div>
-                </div>
-
-                <button type="submit" class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-900 transition">Submit Full Registration</button>
+                <button type="submit" id="regSubmitBtn" class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-gray-900 transition flex justify-center items-center gap-2">
+                    Submit Registration
+                </button>
             </form>
         </div>
     </div>
@@ -594,12 +563,11 @@
 
         renderPosts();
     </script>
-    <!-- Firebase Integration -->
+<!-- Firebase Integration -->
     <script type="module">
-        // Import Firebase functions from Google CDN
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -613,16 +581,58 @@
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        
-        // Initialize Auth and Database
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Make them globally available so we can use them in our normal scripts
+        // Making Firebase variables global
         window.auth = auth;
         window.db = db;
 
-        console.log("Firebase Connected Successfully! 🎉");
+        // --- REGISTRATION SYSTEM ---
+        window.handleRegistration = async function(event) {
+            event.preventDefault(); // Page reload off kora
+            
+            const btn = document.getElementById('regSubmitBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            const name = document.getElementById('regName').value;
+            const phone = document.getElementById('regPhone').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const mistId = document.getElementById('regMistId').value;
+            const dept = document.getElementById('regDept').value;
+
+            try {
+                // 1. Firebase a Email ar Password diye Account Create
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // 2. Database e user er baki info (Name, Dept, ID) save kora
+                await setDoc(doc(db, "users", user.uid), {
+                    fullName: name,
+                    email: email,
+                    phone: phone,
+                    mistId: mistId,
+                    department: dept,
+                    bloodGroup: "Unknown", // Porobortite update korbe
+                    status: "pending", // Admin er approve er jonno waiting
+                    createdAt: serverTimestamp()
+                });
+
+                // Success!
+                document.getElementById('registerModal').classList.add('hidden');
+                showToast('Registration successful! Waiting for Admin approval.');
+                event.target.reset();
+
+            } catch (error) {
+                // Kon dhoroner error hoise seta dekhabe
+                alert("Registration failed: " + error.message);
+            } finally {
+                btn.innerHTML = 'Submit Registration';
+                btn.disabled = false;
+            }
+        };
     </script>
 </body>
 </html>
