@@ -594,5 +594,35 @@
 
         renderPosts();
     </script>
+    <!-- Firebase Integration -->
+    <script type="module">
+        // Import Firebase functions from Google CDN
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDTcu4_zQn9-0PtilELs2vwyAfTngiQPhw",
+            authDomain: "mist-blood-connect.firebaseapp.com",
+            projectId: "mist-blood-connect",
+            storageBucket: "mist-blood-connect.firebasestorage.app",
+            messagingSenderId: "510808357197",
+            appId: "1:510808357197:web:da15442e0da30bf34edf04"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        
+        // Initialize Auth and Database
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Make them globally available so we can use them in our normal scripts
+        window.auth = auth;
+        window.db = db;
+
+        console.log("Firebase Connected Successfully! 🎉");
+    </script>
 </body>
 </html>
