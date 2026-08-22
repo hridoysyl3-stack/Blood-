@@ -164,7 +164,8 @@
                     <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded animate-pulse"><i class="fas fa-circle text-[8px] mr-1"></i> Live</span>
                 </div>
                 <div id="feedContainer" class="space-y-5">
-                    <!-- Cards injected via JS -->
+                    <!-- Loading State - Will be replaced by Firebase data -->
+                    <p class="text-center text-gray-500 py-4"><i class="fas fa-spinner fa-spin"></i> Loading live requests...</p>
                 </div>
             </div>
 
@@ -310,7 +311,6 @@
             <div class="w-16 h-16 bg-yellow-100 text-yellow-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4"><i class="fas fa-hand-holding-heart"></i></div>
             <h2 class="text-2xl font-bold text-gray-800 mb-2">Support Our Community</h2>
             
-            <!-- Updated Support Text -->
             <p class="text-gray-600 text-sm mb-4">100% non-profit. Donations are used for website maintenance, small appreciation gifts for regular donors and our <strong>Zero-Cost Transport Fund</strong>.</p>
             
             <div class="bg-gray-50 border p-4 rounded-lg mb-6">
@@ -331,7 +331,7 @@
                 <h2 class="text-xl font-bold text-red-800"><i class="fas fa-pen-square mr-2"></i> Create Blood Request</h2>
                 <button onclick="toggleModal('postModal')" class="text-gray-500 hover:text-red-500"><i class="fas fa-times text-xl"></i></button>
             </div>
-            <form onsubmit="handlePostSubmit(event)" class="p-6 space-y-4 overflow-y-auto hide-scroll flex-grow">
+            <form onsubmit="window.handlePostSubmit(event)" class="p-6 space-y-4 overflow-y-auto hide-scroll flex-grow">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-sm font-semibold mb-1">Blood Group *</label>
@@ -368,7 +368,7 @@
                     </label>
                 </div>
 
-                <button type="submit" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition">Post Request</button>
+                <button type="submit" id="submitRequestBtn" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition">Post Request</button>
             </form>
         </div>
     </div>
@@ -446,7 +446,7 @@
         <span id="toastMsg" class="font-medium">Success!</span>
     </div>
 
-    <!-- Application Logic -->
+    <!-- Standard Application Logic -->
     <script>
         // Hero Cards Slow Auto-Scroll functionality
         const scrollContainer = document.getElementById('heroScroll');
@@ -471,11 +471,6 @@
             scrollContainer.addEventListener('touchend', startAutoScroll);
         }
 
-        let posts = [
-            { id: 1, blood: 'O+', bags: 2, date: '2026-08-20', urgency: 'Needed in 1/2 days', problem: 'Bypass Surgery', hospital: 'CMH, Dhaka', relation: 'Father', time: '1 hour ago', transportProvided: true },
-            { id: 2, blood: 'AB-', bags: 1, date: '2026-08-18', urgency: 'Urgent (Today)', problem: 'Road Accident', hospital: 'Evercare Hospital', relation: 'Relative', time: '3 hours ago', transportProvided: false }
-        ];
-
         const hospitals = [
             { name: "CMH (Combined Military Hospital)", address: "Dhaka Cantonment", landmark: "Inside Cantonment, entry via Jahangir Gate." },
             { name: "DMCH (Dhaka Medical College)", address: "Secretariat Road", landmark: "Beside Central Shaheed Minar." },
@@ -486,61 +481,6 @@
             'A+': ['Akib Ahmed_NSE_10'], 'B+': ['Tanvir Hasan_ME_19'], 'O+': ['Mahmudul Hasan_CE_22'], 
             'AB+': ['Amlan Roy_NSE_10'], 'A-': [], 'B-': [], 'O-': [], 'AB-': []
         };
-
-        function renderPosts() {
-            const container = document.getElementById('feedContainer');
-            container.innerHTML = '';
-            posts.forEach(post => {
-                const urgencyColor = post.urgency.includes('Urgent') ? 'text-red-600 bg-red-100' : 'text-orange-600 bg-orange-100';
-                const transportBadge = post.transportProvided ? `<p class="text-xs text-blue-600 font-bold mb-2 bg-blue-50 inline-block px-2 py-1 rounded"><i class="fas fa-car mr-1"></i> Transport cost will be provided by requester</p>` : '';
-
-                container.innerHTML += `
-                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition relative mt-4">
-                        <div class="absolute top-0 right-0 ${urgencyColor} text-xs font-bold px-3 py-1 rounded-bl-lg">${post.urgency}</div>
-                        <div class="p-5 flex flex-col md:flex-row gap-5 mt-4">
-                            <div class="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 w-24 h-24 rounded-xl border border-gray-200 shadow-sm">
-                                <span class="text-3xl font-black text-red-600">${post.blood}</span>
-                                <span class="text-xs font-bold text-gray-500 mt-1">${post.bags} Bag(s)</span>
-                            </div>
-                            <div class="flex-grow">
-                                ${transportBadge}
-                                <h4 class="text-lg font-bold text-gray-800 mb-1 flex items-center gap-2"><i class="fas fa-hospital-alt text-red-500"></i>${post.hospital}</h4>
-                                <p class="text-sm font-bold text-gray-700 mb-3 border-b pb-2">Problem: <span class="font-normal text-red-600">${post.problem}</span></p>
-                                <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
-                                    <p><i class="far fa-calendar-alt w-5 text-gray-400"></i> Date: <span class="font-semibold text-gray-800">${post.date}</span></p>
-                                    <p><i class="fas fa-user-injured w-5 text-gray-400"></i> For: <span class="font-semibold text-gray-800">${post.relation}</span></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-gray-50 px-5 py-3 border-t flex justify-end">
-                            <button onclick="document.getElementById('authModal').classList.remove('hidden')" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-2">
-                                <i class="fas fa-hand-holding-medical"></i> View & Donate
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function handlePostSubmit(e) {
-            e.preventDefault();
-            posts.unshift({
-                id: Date.now(),
-                blood: document.getElementById('reqBlood').value,
-                bags: document.getElementById('reqBags').value,
-                date: document.getElementById('reqDate').value,
-                urgency: document.getElementById('reqUrgency').value,
-                problem: document.getElementById('reqProblem').value,
-                hospital: document.getElementById('reqHospital').value,
-                relation: document.getElementById('reqRelation').value,
-                transportProvided: document.getElementById('reqTransportProvider').checked,
-                time: 'Just now'
-            });
-            toggleModal('postModal');
-            e.target.reset();
-            renderPosts();
-            showToast("Blood request posted successfully.");
-        }
 
         // Searches
         function searchDonors() {
@@ -586,14 +526,13 @@
             t.classList.remove('hidden');
             setTimeout(() => t.classList.add('hidden'), 3500);
         }
-
-        renderPosts();
     </script>
-<!-- Firebase Integration -->
+
+    <!-- Firebase Integration -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, serverTimestamp, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
         // Your web app's Firebase configuration
         const firebaseConfig = {
@@ -610,13 +549,106 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Making Firebase variables global
         window.auth = auth;
         window.db = db;
 
+        // --- FETCH LIVE REQUESTS FROM DATABASE ---
+        window.loadLiveRequests = async function() {
+            const container = document.getElementById('feedContainer');
+            container.innerHTML = '<p class="text-center text-gray-500 py-4"><i class="fas fa-spinner fa-spin"></i> Loading live requests...</p>';
+
+            try {
+                // Database theke sob request anchi
+                const querySnapshot = await getDocs(collection(db, "requests"));
+                container.innerHTML = '';
+                
+                if(querySnapshot.empty) {
+                    container.innerHTML = '<p class="text-center text-gray-500 py-4">No live blood requests right now. Alhamdullilah.</p>';
+                    return;
+                }
+
+                // Notun post gulo jeno upore ashe tar jonno reverse kora hocche
+                const requestsArray = [];
+                querySnapshot.forEach((docSnap) => requestsArray.push({ id: docSnap.id, ...docSnap.data() }));
+                requestsArray.reverse();
+
+                requestsArray.forEach((post) => {
+                    const urgencyColor = post.urgency.includes('Urgent') ? 'text-red-600 bg-red-100' : 'text-orange-600 bg-orange-100';
+                    const transportBadge = post.transportProvided ? `<p class="text-xs text-blue-600 font-bold mb-2 bg-blue-50 inline-block px-2 py-1 rounded"><i class="fas fa-car mr-1"></i> Transport cost will be provided by requester</p>` : '';
+                    
+                    container.innerHTML += `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition relative mt-4">
+                            <div class="absolute top-0 right-0 ${urgencyColor} text-xs font-bold px-3 py-1 rounded-bl-lg">${post.urgency}</div>
+                            <div class="p-5 flex flex-col md:flex-row gap-5 mt-4">
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center bg-gray-50 w-24 h-24 rounded-xl border border-gray-200 shadow-sm">
+                                    <span class="text-3xl font-black text-red-600">${post.bloodGroup}</span>
+                                    <span class="text-xs font-bold text-gray-500 mt-1">${post.bags} Bag(s)</span>
+                                </div>
+                                <div class="flex-grow">
+                                    ${transportBadge}
+                                    <h4 class="text-lg font-bold text-gray-800 mb-1 flex items-center gap-2"><i class="fas fa-hospital-alt text-red-500"></i>${post.hospital}</h4>
+                                    <p class="text-sm font-bold text-gray-700 mb-3 border-b pb-2">Problem: <span class="font-normal text-red-600">${post.problem}</span></p>
+                                    <div class="grid grid-cols-2 gap-y-2 text-sm text-gray-600">
+                                        <p><i class="far fa-calendar-alt w-5 text-gray-400"></i> Date: <span class="font-semibold text-gray-800">${post.dateNeeded}</span></p>
+                                        <p><i class="fas fa-user-injured w-5 text-gray-400"></i> For: <span class="font-semibold text-gray-800">${post.relation}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-gray-50 px-5 py-3 border-t flex justify-end">
+                                <button onclick="document.getElementById('authModal').classList.remove('hidden')" class="bg-red-600 text-white px-6 py-2 rounded-md font-bold text-sm shadow hover:bg-red-700 transition flex items-center gap-2">
+                                    <i class="fas fa-hand-holding-medical"></i> View & Donate
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } catch (error) {
+                console.error("Error fetching requests: ", error);
+                container.innerHTML = '<p class="text-center text-red-500 py-4">Error loading requests. Check console.</p>';
+            }
+        };
+
+        // --- POST NEW REQUEST ---
+        window.handlePostSubmit = async function(event) {
+            event.preventDefault(); 
+            
+            const btn = document.getElementById('submitRequestBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Posting...';
+            btn.disabled = true;
+
+            try {
+                // Database a "requests" table e data save kora
+                await addDoc(collection(db, "requests"), {
+                    bloodGroup: document.getElementById('reqBlood').value,
+                    bags: document.getElementById('reqBags').value,
+                    dateNeeded: document.getElementById('reqDate').value,
+                    urgency: document.getElementById('reqUrgency').value,
+                    relation: document.getElementById('reqRelation').value,
+                    problem: document.getElementById('reqProblem').value,
+                    hospital: document.getElementById('reqHospital').value,
+                    transportProvided: document.getElementById('reqTransportProvider').checked,
+                    status: "pending", 
+                    timestamp: serverTimestamp()
+                });
+
+                toggleModal('postModal');
+                event.target.reset();
+                showToast("Blood Request posted successfully!");
+                
+                // Notun request ashar por feed ta abar load kora
+                window.loadLiveRequests();
+
+            } catch (error) {
+                alert("Failed to post request: " + error.message);
+            } finally {
+                btn.innerHTML = 'Post Request';
+                btn.disabled = false;
+            }
+        };
+
         // --- REGISTRATION SYSTEM ---
         window.handleRegistration = async function(event) {
-            event.preventDefault(); // Page reload off kora
+            event.preventDefault(); 
             
             const btn = document.getElementById('regSubmitBtn');
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
@@ -630,29 +662,25 @@
             const dept = document.getElementById('regDept').value;
 
             try {
-                // 1. Firebase a Email ar Password diye Account Create
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
 
-                // 2. Database e user er baki info (Name, Dept, ID) save kora
                 await setDoc(doc(db, "users", user.uid), {
                     fullName: name,
                     email: email,
                     phone: phone,
                     mistId: mistId,
                     department: dept,
-                    bloodGroup: "Unknown", // Porobortite update korbe
-                    status: "pending", // Admin er approve er jonno waiting
+                    bloodGroup: "Unknown", 
+                    status: "pending", 
                     createdAt: serverTimestamp()
                 });
 
-                // Success!
                 document.getElementById('registerModal').classList.add('hidden');
                 showToast('Registration successful! Waiting for Admin approval.');
                 event.target.reset();
 
             } catch (error) {
-                // Kon dhoroner error hoise seta dekhabe
                 alert("Registration failed: " + error.message);
             } finally {
                 btn.innerHTML = 'Submit Registration';
@@ -672,16 +700,10 @@
             const password = document.getElementById('loginPassword').value;
 
             try {
-                // Firebase a Login check kora
-                const userCredential = await signInWithEmailAndPassword(auth, email, password);
-                
-                // Login Success!
+                await signInWithEmailAndPassword(auth, email, password);
                 document.getElementById('authModal').classList.add('hidden');
                 showToast('Login Successful! Welcome Hero.');
                 event.target.reset();
-                
-                // Ekhan theke amra chaile log in korar por navbar e "Logout" button dekhate pari
-
             } catch (error) {
                 alert("Login failed: Incorrect Email or Password!");
             } finally {
@@ -689,6 +711,12 @@
                 btn.disabled = false;
             }
         };
+
+        // Page load howar sathe sathe feed e data anbe
+        window.addEventListener('DOMContentLoaded', () => {
+            window.loadLiveRequests();
+        });
+
     </script>
 </body>
 </html>
